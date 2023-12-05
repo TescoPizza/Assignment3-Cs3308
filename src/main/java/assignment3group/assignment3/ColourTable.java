@@ -1,32 +1,32 @@
 package assignment3group.assignment3;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ColourTable {
     // Stores Size of palette
     private int paletteSize;
 
-    //Hash map storing all the colours
-    private Set<Integer> colours;
-
-    private int[] palette;
+    //List storing all the colours in the palette
+    private List<Integer> palette;
 
 
     public ColourTable(int paletteSize) {
         if (isValidPaletteSize(paletteSize)) {
             this.paletteSize = paletteSize;
-            this.colours = new HashSet<>();
+            this.palette = new ArrayList<Integer>();
         }
 
     }
     public void add(int colour) {
-        if (CheckNotExceedingTableSize()){
+        if (checkNotExceedingTableSize()){
             throw new IllegalStateException("Exceeding capacity of ColourTable");
         }
-        colours.add(colour);
+        if (checkValidRgb(colour) == false) {
+            throw new IllegalArgumentException("Invalid 24-bit RGB value");
+        }
 
-
+        palette.add(colour);
     }
     private boolean isValidPaletteSize(int paletteSize) {
         if (paletteSize > 1024) {
@@ -40,12 +40,21 @@ public class ColourTable {
 
     }
 
-    private boolean CheckNotExceedingTableSize() {
-        if (paletteSize < this.colours.size()) {
+    private boolean checkNotExceedingTableSize() {
+        if (paletteSize < this.palette.size()) {
             return false;
         }
         else{
             return true;
+        }
+    }
+
+    private boolean checkValidRgb(int colour) {
+        if ((colour >= 0 && colour <= 0xFFFFFF)) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
