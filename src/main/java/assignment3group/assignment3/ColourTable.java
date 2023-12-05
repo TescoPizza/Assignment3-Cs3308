@@ -29,33 +29,18 @@ public class ColourTable {
         palette.add(colour);
     }
     private boolean isValidPaletteSize(int paletteSize) {
-        if (paletteSize > 1024) {
-            throw new IllegalArgumentException("Palette size must be less than 1025");
-        }
-        if ((paletteSize & (paletteSize - 1)) == 0 && paletteSize > 1) {
-            return true;
-        } else {
-            throw new IllegalArgumentException("Palette size must be a power of two and greater than 1.");
-        }
+        return paletteSize > 1 && paletteSize <= 1024 && (paletteSize & (paletteSize - 1)) == 0;
 
     }
 
     private boolean checkNotExceedingTableSize() {
-        if (paletteSize < this.palette.size()) {
-            return false;
-        }
-        else{
-            return true;
-        }
+        return this.palette.size() >= paletteSize;
+
     }
 
-    private boolean checkValidRgb(int colour) {
-        if ((colour >= 0 && colour <= 0xFFFFFF)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    public boolean checkValidRgb(int colour) {
+        return colour >= 0 && colour <= 0xFFFFFF;
+
     }
 
 
