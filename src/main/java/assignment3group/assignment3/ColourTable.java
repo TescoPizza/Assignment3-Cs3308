@@ -1,19 +1,31 @@
 package assignment3group.assignment3;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ColourTable {
+    // Stores Size of palette
     private int paletteSize;
-    private Set<Integer> colors;
+
+    //Hash map storing all the colours
+    private Set<Integer> colours;
 
     private int[] palette;
 
 
     public ColourTable(int paletteSize) {
-        // TODO: Validate that paletteSize is a power of two and between 2 and 1024.
         if (isValidPaletteSize(paletteSize)) {
             this.paletteSize = paletteSize;
+            this.colours = new HashSet<>();
         }
+
+    }
+    public void add(int colour) {
+        if (CheckExceedingTableSize()){
+            throw new IllegalStateException("Exceeding capacity of ColourTable");
+        }
+        colours.add(colour);
+
 
     }
     private boolean isValidPaletteSize(int paletteSize) {
@@ -28,5 +40,16 @@ public class ColourTable {
 
     }
 
-    // TODO: Implement other methods and functionalities as per your assignment.
+    private boolean CheckExceedingTableSize() {
+        if (paletteSize < this.colours.size()) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+
+
 }
