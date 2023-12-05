@@ -25,6 +25,13 @@ public class ColourTableTest {
         ColourTable ColourTable = new ColourTable(2);
         assertDoesNotThrow(() -> ColourTable.add(10));
 
+    }
+    @Test
+    public void testExceedingTables() {
+        ColourTable ColourTable = new ColourTable(2);
+        ColourTable.add(10);
+        ColourTable.add(10);
+        assertThrows(IllegalStateException.class, () -> ColourTable.add(10));
 
     }
         }
