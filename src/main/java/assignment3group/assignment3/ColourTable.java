@@ -27,6 +27,9 @@ public class ColourTable {
         if (checkValidRgb(colour) == false) {
             throw new IllegalArgumentException("Invalid 24-bit RGB value");
         }
+        if (checkIfContainsColour(colour)) {
+            return;
+        }
 
         palette.add(colour);
     }
@@ -43,6 +46,9 @@ public class ColourTable {
     public boolean checkValidRgb(int colour) {
         return colour >= 0 && colour <= 0xFFFFFF;
 
+    }
+    public boolean checkIfContainsColour(int colour) {
+        return this.palette.contains(colour);
     }
 
 

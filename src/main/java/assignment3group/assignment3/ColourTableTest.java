@@ -13,7 +13,6 @@ public class ColourTableTest {
     }
     @Test
     public void testInvalidPaletteSizes() {
-//        assertThrows(IllegalArgumentException.class, () -> new ColourTable(65536));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(1023));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(-1));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(1));
@@ -28,15 +27,15 @@ public class ColourTableTest {
     public void testExceedingTables() {
         ColourTable ColourTable = new ColourTable(2);
         ColourTable.add(10);
-        ColourTable.add(10);
-        assertThrows(IllegalStateException.class, () -> ColourTable.add(10));
+        ColourTable.add(11);
+        assertThrows(IllegalStateException.class, () -> ColourTable.add(12));
 
     }
 
     @Test
     public void testValidRgbColours(){
         ColourTable ColourTable = new ColourTable(2);
-        assertDoesNotThrow(() ->  ColourTable.add(10));
+        assertDoesNotThrow(() ->  ColourTable.add(111));
         assertDoesNotThrow(() -> ColourTable.add(0x00000A));
     }
     @Test
@@ -44,6 +43,18 @@ public class ColourTableTest {
         ColourTable ColourTable = new ColourTable(2);
         assertThrows(IllegalArgumentException.class, () -> ColourTable.add(-10));
         assertThrows(IllegalArgumentException.class, () -> ColourTable.add(0x1000000));
+    }
+    @Test
+    public void testIfAddsColourTwice(){
+        ColourTable ColourTable = new ColourTable(2);
+        ColourTable.add(10);
+        ColourTable.add(10);
+        ColourTable.add(10);
+        ColourTable.add(10);
+        assertDoesNotThrow(() -> ColourTable.add(10)); // It does not throw error, as there is only one colour in the pallete
+
+
+
     }
 
         }
