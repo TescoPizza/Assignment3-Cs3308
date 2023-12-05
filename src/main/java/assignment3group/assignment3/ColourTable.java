@@ -17,7 +17,7 @@ public class ColourTable {
 
     }
     private boolean isValidPaletteSize(int paletteSize) {
-        if (paletteSize < 1024) {
+        if (paletteSize > 1024) {
             throw new IllegalArgumentException("Palette size must be less than 1025");
         }
         if ((paletteSize & (paletteSize - 1)) == 0 && paletteSize > 1) {
