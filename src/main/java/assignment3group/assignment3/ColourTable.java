@@ -5,10 +5,10 @@ import java.util.List;
 
 public class ColourTable {
     // Stores Size of palette
-    private int paletteSize;
+    private final int paletteSize;
 
     //List storing all the colours in the palette
-    private List<Integer> palette;
+    private final List<Integer> palette;
 
 
     /**
@@ -21,7 +21,7 @@ public class ColourTable {
             throw new IllegalArgumentException("Invalid Palette Size");
         }
         this.paletteSize = paletteSize;
-        this.palette = new ArrayList<Integer>();
+        this.palette = new ArrayList<>();
 
 
     }
@@ -34,7 +34,7 @@ public class ColourTable {
         if (checkNotExceedingTableSize()){
             throw new IllegalStateException("Exceeding capacity of ColourTable");
         }
-        if (checkValidRgb(colour) == false) {
+        if (!checkValidRgb(colour)) {
             throw new IllegalArgumentException("Invalid 24-bit RGB value");
         }
         if (checkIfContainsColour(colour)) {
