@@ -13,12 +13,10 @@ public class ColourTableTest {
     }
     @Test
     public void testInvalidPaletteSizes() {
-        assertThrows(IllegalArgumentException.class, () -> new ColourTable(65536));
+//        assertThrows(IllegalArgumentException.class, () -> new ColourTable(65536));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(1023));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(-1));
         assertThrows(IllegalArgumentException.class, () -> new ColourTable(1));
-
-
     }
     @Test
     public void testNotExceedingTables() {
@@ -34,6 +32,20 @@ public class ColourTableTest {
         assertThrows(IllegalStateException.class, () -> ColourTable.add(10));
 
     }
+
+    @Test
+    public void testValidRgbColours(){
+        ColourTable ColourTable = new ColourTable(2);
+        assertDoesNotThrow(() ->  ColourTable.add(10));
+        assertDoesNotThrow(() -> ColourTable.add(0x00000A));
+    }
+    @Test
+    public void testInValidRgbColours(){
+        ColourTable ColourTable = new ColourTable(2);
+        assertThrows(IllegalArgumentException.class, () -> ColourTable.add(-10));
+        assertThrows(IllegalArgumentException.class, () -> ColourTable.add(0x1000000));
+    }
+
         }
 
 

@@ -12,10 +12,12 @@ public class ColourTable {
 
 
     public ColourTable(int paletteSize) {
-        if (isValidPaletteSize(paletteSize)) {
-            this.paletteSize = paletteSize;
-            this.palette = new ArrayList<Integer>();
+        if (!isValidPaletteSize(paletteSize)) {
+            throw new IllegalArgumentException("Invalid Palette Size");
         }
+        this.paletteSize = paletteSize;
+        this.palette = new ArrayList<Integer>();
+
 
     }
     public void add(int colour) {
