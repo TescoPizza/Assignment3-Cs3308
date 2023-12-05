@@ -20,6 +20,13 @@ public class ColourTableTest {
 
 
     }
+    @Test
+    public void testNotExceedingTables() {
+        ColourTable ColourTable = new ColourTable(2);
+        assertDoesNotThrow(() -> ColourTable.add(10));
+
+
+    }
         }
 
 

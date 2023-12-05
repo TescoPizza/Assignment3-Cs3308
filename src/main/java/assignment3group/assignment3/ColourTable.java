@@ -21,7 +21,7 @@ public class ColourTable {
 
     }
     public void add(int colour) {
-        if (CheckExceedingTableSize()){
+        if (CheckNotExceedingTableSize()){
             throw new IllegalStateException("Exceeding capacity of ColourTable");
         }
         colours.add(colour);
@@ -40,7 +40,7 @@ public class ColourTable {
 
     }
 
-    private boolean CheckExceedingTableSize() {
+    private boolean CheckNotExceedingTableSize() {
         if (paletteSize < this.colours.size()) {
             return false;
         }
